@@ -29,7 +29,7 @@ contract Solution is IERC721Receiver {
 
     function calculateCorrectAnswer() internal view returns (uint256) {
         // logic to calculate the correct answer.
-        uint256 randomNumber = uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao, address(this))));
+        uint256 randomNumber = uint256(keccak256(abi.encodePacked(address(this), block.timestamp, block.prevrandao)));
         return randomNumber % 100000;
     }
 
@@ -41,7 +41,8 @@ contract Solution is IERC721Receiver {
         bytes calldata data
     ) external override returns (bytes4) {
         // Perform the NFT transfer to the specified receiver address.
-        IERC721(0x33e1fD270599188BB1489a169dF1f0be08b83509).safeTransferFrom(address(this), receiver, tokenId);
+        //https://sepolia.etherscan.io/address/0x76b50696b8effca6ee6da7f6471110f334536321#code
+        IERC721(0x76B50696B8EFFCA6Ee6Da7F6471110F334536321).safeTransferFrom(address(this), receiver, tokenId);
 
         // Return the ERC721_RECEIVED value as per the ERC721 standard.
         return this.onERC721Received.selector;
