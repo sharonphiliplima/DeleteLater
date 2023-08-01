@@ -16,13 +16,15 @@ contract Solution is IERC721Receiver {
 
     // The constructor sets the contractAddress and correctAnswer based on some initialization logic.
     constructor() {
-        correctAnswer = calculateCorrectAnswer();
         lessonNine = LessonNine(0x33e1fD270599188BB1489a169dF1f0be08b83509);
     }
 
 
     // Function to call the solveChallenge function on the Challenge (lesson 9)
-    function callSolveChallenge() external {        
+    function callSolveChallenge() external { 
+        
+        correctAnswer = calculateCorrectAnswer();
+       
         
         lessonNine.solveChallenge(correctAnswer, "sharonplima");
     }
